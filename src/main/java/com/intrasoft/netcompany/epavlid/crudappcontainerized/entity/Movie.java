@@ -1,4 +1,4 @@
-package com.intrasoft.netcompany.epavlid.crudappcontainerized.dto;
+package com.intrasoft.netcompany.epavlid.crudappcontainerized.entity;
 
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -9,28 +9,28 @@ import java.util.Objects;
 @Getter @Setter
 @Builder @NoArgsConstructor @AllArgsConstructor
 @ToString
-@Entity @Table(name = "movie_tbl")
-public class MovieDto {
+@Entity @Table(name = "Movies")
+public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "director", nullable = false)
+    @Column(name = "director")
     private String director;
 
-    @Column(name = "release year", nullable = false)
+    @Column(name = "release_year")
     private Integer releaseYear;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        MovieDto movieDto = (MovieDto) o;
-        return id != null && Objects.equals(id, movieDto.id);
+        Movie movie = (Movie) o;
+        return id != null && Objects.equals(id, movie.id);
     }
 
     @Override

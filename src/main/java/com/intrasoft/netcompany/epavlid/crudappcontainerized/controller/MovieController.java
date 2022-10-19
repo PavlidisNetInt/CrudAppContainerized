@@ -2,13 +2,12 @@ package com.intrasoft.netcompany.epavlid.crudappcontainerized.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.intrasoft.netcompany.epavlid.crudappcontainerized.dto.MovieDto;
+import com.intrasoft.netcompany.epavlid.crudappcontainerized.entity.Movie;
 import com.intrasoft.netcompany.epavlid.crudappcontainerized.service.MovieService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,24 +17,27 @@ import java.util.List;
 @Tag(name = "Movie REST API endpoint")
 public class MovieController {
 
-    @Autowired
-    private MovieService movieService;
+    private final MovieService movieService;
+
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @Operation(summary = "Get All Movies", description = "Return all movie records")
     @GetMapping("/movies")
-    public List<MovieDto> getAllMovies(){
+    public List<Movie> getAllMovies(){
         return movieService.getAllMovies();
     }
 
     @Operation(summary = "Get Movie by Id", description = "Retrieve Movie record by Id")
     @GetMapping("/movies/{id}")
-    public MovieDto getMovieById(@PathVariable Long id){
+    public Movie getMovieById(@PathVariable Long id){
         return movieService.getMovieById(id);
     }
 
     @Operation(summary = "Add movie", description = "Add new Movie record")
     @PostMapping("/movies")
-    public String postMovie(@Valid @RequestBody MovieDto movie){
+    public String postMovie(@Valid @RequestBody Movie movie){
         movieService.addMovie(movie);
         return "Movie record with title " + movie.getTitle() + " has been created.";
     }
@@ -44,7 +46,7 @@ public class MovieController {
     @PutMapping("/movies/{id}")
     public void updateMovie(
             @PathVariable Long id,
-            @Valid @RequestBody MovieDto movie){
+            @Valid @RequestBody Movie movie){
         movieService.updateMovie(id, movie);
     }
 
