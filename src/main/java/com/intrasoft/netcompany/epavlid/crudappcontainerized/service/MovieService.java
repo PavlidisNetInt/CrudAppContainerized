@@ -1,11 +1,12 @@
 package com.intrasoft.netcompany.epavlid.crudappcontainerized.service;
 
 import com.intrasoft.netcompany.epavlid.crudappcontainerized.entity.Movie;
+import com.intrasoft.netcompany.epavlid.crudappcontainerized.exceptions.ResourceNotFoundException;
 import com.intrasoft.netcompany.epavlid.crudappcontainerized.repository.MovieRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MovieService {
@@ -20,8 +21,8 @@ public class MovieService {
         return new ArrayList<>(movieRepository.findAll());
     }
 
-    public Movie getMovieById(Long id){
-        return movieRepository.getReferenceById(id);
+    public Optional<Movie> getMovieById(Long id){
+        return movieRepository.findById(id);
     }
 
     public void addMovie(Movie movie){
@@ -32,8 +33,13 @@ public class MovieService {
         movieRepository.save(movie);
     }
 
-    public void deleteMovieById(Long id){
-        movieRepository.deleteById(id);
+    public ResponseEntity<Map<String, Boolean>> deleteMovieById(Long id){
+        Movie movie = movieRepository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Movie with " + id + "does not exist"));
+        movieRepository.delete(movie);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 
     public void deleteAllMovies(){

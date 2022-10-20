@@ -12,8 +12,6 @@ import java.util.Objects;
 @Entity @Table(name = "Movies")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "title")
