@@ -31,25 +31,25 @@ public class MovieController {
     }
 
     @GetMapping("/movies/{id}")
-    public Optional<Movie> getMovieById(@PathVariable Long id){
+    public Optional<Movie> getMovieById(@PathVariable long id){
         return movieService.getMovieById(id);
     }
 
     @PostMapping("/movies")
-    public String postMovie(@Valid @RequestBody Movie movie){
+    public String postMovie(@RequestBody Movie movie){
         movieService.addMovie(movie);
         return "Movie record with title " + movie.getTitle() + " has been created.";
     }
 
     @PutMapping("/movies/{id}")
     public void updateMovie(
-            @PathVariable Long id,
-            @Valid @RequestBody Movie movie){
+            @PathVariable long id,
+            @RequestBody Movie movie){
         movieService.updateMovie(id, movie);
     }
 
     @DeleteMapping("/movies/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteMovieById(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> deleteMovieById(@PathVariable long id){
         return movieService.deleteMovieById(id);
     }
 

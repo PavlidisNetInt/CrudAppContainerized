@@ -21,7 +21,7 @@ public class MovieService {
         return new ArrayList<>(movieRepository.findAll());
     }
 
-    public Optional<Movie> getMovieById(Long id){
+    public Optional<Movie> getMovieById(long id){
         return movieRepository.findById(id);
     }
 
@@ -29,11 +29,11 @@ public class MovieService {
         movieRepository.save(movie);
     }
 
-    public void updateMovie(Long id, Movie movie){
+    public void updateMovie(long id, Movie movie){
         movieRepository.save(movie);
     }
 
-    public ResponseEntity<Map<String, Boolean>> deleteMovieById(Long id){
+    public ResponseEntity<Map<String, Boolean>> deleteMovieById(long id){
         Movie movie = movieRepository.findById(id)
                         .orElseThrow(() -> new ResourceNotFoundException("Movie with " + id + "does not exist"));
         movieRepository.delete(movie);

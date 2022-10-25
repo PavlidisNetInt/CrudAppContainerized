@@ -7,11 +7,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Getter @Setter
-@Builder @NoArgsConstructor @AllArgsConstructor
 @ToString
+@NoArgsConstructor @AllArgsConstructor
 @Entity @Table(name = "Movies")
 public class Movie {
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title")
