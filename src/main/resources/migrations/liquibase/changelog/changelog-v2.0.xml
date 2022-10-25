@@ -1,0 +1,37 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <!-- Insertions  -->
+    <changeSet id="spring_crud_app-2.0" author="epavlid">
+        <insert tableName="movies">
+            <column name="id" value="0"/>
+            <column name="title" value="Citizen Kane"/>
+            <column name="director" value="Orson Welles"/>
+            <column name="release_year" value="1941"/>
+        </insert>
+        <insert tableName="movies">
+            <column name="id" value="1"/>
+            <column name="title" value="Vertigo"/>
+            <column name="director" value="Alfred Hitchcock"/>
+            <column name="release_year" value="1958"/>
+        </insert>
+        <insert tableName="movies">
+            <column name="id" value="2"/>
+            <column name="title" value="2001:A Space Odyssey"/>
+            <column name="director" value="Stanley Kubrick"/>
+            <column name="release_year" value="1968"/>
+        </insert>
+        <insert tableName="movies">
+            <column name="id" value="3"/>
+            <column name="title" value="8 1/2"/>
+            <column name="director" value="Federico Fellini"/>
+            <column name="release_year" value="1963"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
