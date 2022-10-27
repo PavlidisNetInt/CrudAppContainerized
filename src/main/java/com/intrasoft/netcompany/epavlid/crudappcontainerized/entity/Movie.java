@@ -12,17 +12,12 @@ import java.util.Objects;
 @Entity @Table(name = "Movies")
 public class Movie {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "director")
     private String director;
-
-    @Column(name = "release_year")
-    private Integer releaseYear;
+    private java.util.Date releaseDate;
 
     @Override
     public boolean equals(Object o) {

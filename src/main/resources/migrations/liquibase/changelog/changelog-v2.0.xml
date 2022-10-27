@@ -9,28 +9,24 @@
     <!-- Insertions  -->
     <changeSet id="spring_crud_app-2.0" author="epavlid">
         <insert tableName="movies">
-            <column name="id" value="0"/>
             <column name="title" value="Citizen Kane"/>
             <column name="director" value="Orson Welles"/>
-            <column name="release_year" value="1941"/>
+            <column name="release_date" valueDate="1942-01-26T14:44:31"/>
         </insert>
         <insert tableName="movies">
-            <column name="id" value="1"/>
             <column name="title" value="Vertigo"/>
             <column name="director" value="Alfred Hitchcock"/>
-            <column name="release_year" value="1958"/>
+            <column name="release_date" valueDate="1960-01-04T12:00:31"/>
         </insert>
         <insert tableName="movies">
-            <column name="id" value="2"/>
             <column name="title" value="2001:A Space Odyssey"/>
             <column name="director" value="Stanley Kubrick"/>
-            <column name="release_year" value="1968"/>
+            <column name="release_date" valueDate="1968-12-11T00:00:00"/>
         </insert>
         <insert tableName="movies">
-            <column name="id" value="3"/>
             <column name="title" value="8 1/2"/>
             <column name="director" value="Federico Fellini"/>
-            <column name="release_year" value="1963"/>
+            <column name="release_date" valueDate="2002-08-23T14:44:31"/>
         </insert>
     </changeSet>
 

@@ -21,29 +21,39 @@ public class MovieService {
         return new ArrayList<>(movieRepository.findAll());
     }
 
-    public Optional<Movie> getMovieById(long id){
-        return movieRepository.findById(id);
+    public ResponseEntity<Movie> getMovieById(long id){
+        Movie movie = movieRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Movie with " + id + "does not exist"));
+        return ResponseEntity.ok(movie);
     }
 
-    public void addMovie(Movie movie){
-        movieRepository.save(movie);
+    public ResponseEntity<Movie> addMovie(Movie movie){
+        return ResponseEntity.ok(movieRepository.save(movie));
     }
 
-    public void updateMovie(long id, Movie movie){
-        movieRepository.save(movie);
+    public ResponseEntity<Movie> updateMovie(long id, Movie movieDetails){
+        Movie movie = movieRepository.findById(movieDetails.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Movie does not exist with id :" + movieDetails.getId()));
+        movie.setTitle(movieDetails.getTitle());
+        movie.setDirector(movieDetails.getDirector());
+        movie.setReleaseDate(movieDetails.getReleaseDate());
+        return ResponseEntity.ok(movieRepository.save(movie));
     }
 
     public ResponseEntity<Map<String, Boolean>> deleteMovieById(long id){
         Movie movie = movieRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Movie with " + id + "does not exist"));
+                        .orElseThrow(() -> new ResourceNotFoundException("Movie with id: " + id + " does not exist"));
         movieRepository.delete(movie);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 
-    public void deleteAllMovies(){
+    public ResponseEntity<Map<String,Boolean>> deleteAllMovies(){
         movieRepository.deleteAll();
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("All Movies have been deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 
 }

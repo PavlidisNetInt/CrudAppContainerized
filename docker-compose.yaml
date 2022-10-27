@@ -1,8 +1,8 @@
 version : '3'
 
 services:
-  spring-crud-db-v2.0:
-    container_name: spring-crud-db-v2.0
+  spring-crud-db:
+    container_name: spring-crud-db
     #using newly created image
     build:
       context: src\main\resources\migrations
@@ -11,7 +11,7 @@ services:
       - "1521:1521"
       - "5500:5500"
     # mounting volume from our PC (./src/main/resources/db/migrations/scripts) to directory inside the container (/home/oracle/setup/custom_scripts),
-    # wich we crated in Dockerfile
+    # which we created in Dockerfile
     volumes:
       - ./src/main/resources/migrations/scripts:/home/oracle/setup/custom_scripts
     networks:

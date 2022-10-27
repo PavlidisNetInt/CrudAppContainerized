@@ -9,12 +9,12 @@
     <!-- Table Creation -->
     <changeSet id="spring_crud_app-1.0" author="epavlid">
         <createTable tableName="movies">
-            <column name="id" type="int">
-                <constraints primaryKey="true" nullable="false"/>
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="title" type="varchar(38)"/>
             <column name="director" type="varchar(38)"/>
-            <column name="release_year" type="number"/>
+            <column name="release_date" type="timestamp"/>
         </createTable>
     </changeSet>
 
